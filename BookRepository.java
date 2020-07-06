@@ -9,6 +9,19 @@ public class BookRepository {
 		return listOfBooks;
 	}
 	
+	public Book getBookById(String bookId) {
+		Book bookById = null;
+		for(int i =0; i<listOfBooks.size(); i++) {
+			Book book = listOfBooks.get(i);
+			if(book !=null && book.getBookId() !=null 
+					&& book.getBookId().equals(bookId)) {
+				bookById = book;
+				break;
+			}
+		}
+		return bookById;
+	}
+	
 	public BookRepository() {
 		Book html = new Book("B1234", "HTMl+CSS3", 15000);
 		html.setCategory("Hello Coding");

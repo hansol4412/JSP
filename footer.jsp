@@ -7,6 +7,6 @@
 	</div>
 </div> 
 --%>
-
+<hr>
 <p>&copy; BookMarket</p>
 </footer>

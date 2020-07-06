@@ -29,8 +29,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 		<br>
 		<p><%=book.getDescription() %></p>
 		<p><%=book.getAuthor() %> | <%=book.getPublisher() %> | <%=book.getUnitPrice() %>원</p>
+		<p><a href="./book.jsp?id=<%=book.getBookId()%>" 
+		class="btn btn-secondary" role="button">상세정보 &raquo;></a></p>
 		</div>
-		<hr>
 		<% } %>
 		
 	</div>
