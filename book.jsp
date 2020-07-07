@@ -1,7 +1,7 @@
 <%@ page contentType="text/html"%>
 <%@ page pageEncoding="utf-8" %>
 <%@ page import="dto.Book" %>
-<jsp:useBean id="bookDAO" class="dao.BookRepository" scope="session" />
+<%@ page import="dao.BookRepository" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +19,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	
 	<%
 	  String id = request.getParameter("id");
-	  Book book = bookDAO.getBookById(id);
+	  BookRepository dao = BookRepository.getInstance();
+	  Book book = dao.getBookById(id);
 	 %>
 	 
 	 <div class=container>
