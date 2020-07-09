@@ -4,6 +4,51 @@
 <head>
 <link rel="stylesheet" 
 href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script>
+function CheckAddBook(){
+	var bookId = document.getElementById("bookId");
+	var name = document.getElementById("name");
+	var unitPrice = document.getElementById("unitPrice");
+	var unitsInStock = document.getElementById("unitsInStock");
+	
+	if(!check(/^ISBN[0-9]{1,7}$/, bookId, 
+			"[도서코드]\nISBN과 숫자를 조합하여 5~12자까지 입력하세요\n 반드시 ISBN으로 시작하세요")) return false;
+	
+	if(name.value.length < 4 || name.value.length > 12){
+		alert("[도서명]\n최소 4자에서 최대 12자까지 입력하세요");
+		name.select();
+		name.focus();
+		return false;
+	}
+	
+	if(unitPrice.value < 0){
+		alert("[가격]\n0이상의 수를 입력하세요.");
+		unitPrice.select();
+		unitPrice.focus();
+		return false;
+	}
+	
+	if(isNaN(unitsInStock.value)){
+		alert("[재고 수]\n숫자만 입력하세요");
+		unitsInstock.select();
+		unitsInstock.focus();
+		return false;
+	}
+	
+	function check(regExp, e, msg){
+		if(regExp.test(e.value)){
+			return true;
+		}
+		
+		alert(msg);
+		e.select;
+		e.focus;
+		return false;
+	}
+	
+	document.newBook.submit();
+}
+</script>
 <title>도서 등록</title>
 </head>
 <body>
@@ -19,21 +64,21 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 		<div class="form-group row">
 			<label class="col-sm-2">도서코드</label>
 			<div class="col-sm-3">
-				<input type="text" name="bookId" class="form-control">
+				<input type="text" name="bookId" class="form-control" id="bookId">
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<label class="col-sm-2">도서명</label>
 			<div class="col-sm-3">
-				<input type="text" name="name" class="form-control">
+				<input type="text" name="name" class="form-control" id="name">
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<label class="col-sm-2">가격</label>
 			<div class="col-sm-3">
-				<input type="text" name="unitPrice" class="form-control">
+				<input type="text" name="unitPrice" class="form-control" id="unitPrice">
 			</div>
 		</div>
 		
@@ -83,7 +128,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 		<div class="form-group row">
 			<label class="col-sm-2">재고 수 </label>
 			<div class="col-sm-3">
-				<input type="text" name="unitsInStock" class="form-control">
+				<input type="text" name="unitsInStock" class="form-control" id="unitsInStock">
 			</div>
 		</div>
 		
@@ -105,7 +150,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 		
 		<div class="form-group row">
 			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-primary" value="등록">
+				<input type="button" class="btn btn-primary" value="등록" onclick="CheckAddBook()">
 			</div>
 		</div>
 	
