@@ -28,7 +28,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 			
 		%>
 		<div class="col-md-12">
-		<h3>[<%= book.getCategory()%>] <%= book.getName()%> </h3>
+		<img src="c:\upload\<%=book.getFilename()%>" style="width:100%">
+		<h3>[<%=book.getCategory()%>] <%= book.getName()%> </h3>
 		<br>
 		<p><%=book.getDescription() %></p>
 		<p><%=book.getAuthor() %> | <%=book.getPublisher() %> | <%=book.getUnitPrice() %>원</p>

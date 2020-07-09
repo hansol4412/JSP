@@ -26,6 +26,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	 <div class=container>
 		 <div class="row">
 			 <div class="col-mid-6">
+			 <img src="c:\upload\<%=book.getFilename()%>" style="width:100%">
 			 <h3>[<%=book.getCategory()%>] <%=book.getName()%>  </h3>
 			 <p><%=book.getDescription() %></p>
 			 <p><b>도서코드 : </b><span class="badge badge-danger"><%=book.getBookId() %></span></p>

@@ -38,6 +38,7 @@ public class BookRepository {
 				+ "도전해 보세요. 지금 당장 컴퓨터가 없어도 괜찮습니다. 코드와 실행화면이 바로 보여서 눈으...");
 		html.setAuthor("황재호");
 		html.setPublisher("한빛미디어");
+		html.setFilename("B1237.jpg");
 		
 		Book java = new Book("B1235", "쉽게 배우는 자바 프로그래밍", 27000);
 		java.setCategory("IT 모바일");
@@ -45,6 +46,7 @@ public class BookRepository {
 				+ "있게 구성했습니다. 시각화 도구를 활용한 개념 설명과 군더더기 없는 핵심 코드를 통해 개념과 구현...");
 		java.setAuthor("우종중");
 		java.setPublisher("한빛미디어");
+		java.setFilename("B1234.jpg");
 		
 		Book spring = new Book("B1236", "스프링4 입문", 27000);
 		spring.setCategory("IT 모바일");
@@ -52,6 +54,7 @@ public class BookRepository {
 				+ "더 중요합니다. 예제를 복서햐 붙여넣는 식으로는 실제 개발에서 스프링을 제대로 활용할 수 없습니다 ...");
 		spring.setAuthor("하세가와 유이치, 오오노 와타루, 토기 코헤이 (권은철, 전민수)");
 		spring.setPublisher("한빛미디어");
+		spring.setFilename("B1235.jpg");
 		
 		listOfBooks.add(html);
 		listOfBooks.add(java);
