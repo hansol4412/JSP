@@ -15,6 +15,10 @@ public class BookRepository {
 				+ "도전해 보세요. 지금 당장 컴퓨터가 없어도 괜찮습니다. 코드와 실행 화면이 바로 보여서 눈으...");
 		html.setAuthor("황재호");
 		html.setPublisher("한빛미디어");
+		html.setUnitsInstock(1000);
+		html.setReleaseDate("2013-03");
+		html.setTotalPages(283);
+		
 		
 		Book java = new Book("B1235", "쉽게 배우는 자바 프로그래밍", 27000);
 		java.setCategory("IT 모바일");
@@ -22,6 +26,9 @@ public class BookRepository {
 				+ "구성했습니다. 시각화 도구를 활용한 개념 설명과 군더더기 없는 핵심 코드를 통해 개념과 구현...");
 		java.setAuthor("우종증");
 		java.setPublisher("한빛 아카데미");
+		java.setUnitsInstock(500);
+		java.setReleaseDate("2015-09");
+		java.setTotalPages(368);
 		
 		Book spring = new Book("B1236", "스프링4 입문", 27000);
 		spring.setCategory("IT 모바일");
@@ -29,10 +36,26 @@ public class BookRepository {
 				+ "더 중요합니다. 예제를 복사해 붙여놓는 식으로는 실제 개발에서 스프링을 제대로 이해할 수 없습니다.");
 		spring.setPublisher("한빛미디어");
 		spring.setAuthor("하세기와 유이치, 오오노 와타루, 토키 코헤이 (권은철, 전민수)" );
+		spring.setUnitsInstock(1000);
+		spring.setReleaseDate("2018-11");
+		spring.setTotalPages(698);
+		
 		
 		listOfBooks.add(html);
 		listOfBooks.add(java);
 		listOfBooks.add(spring);
+	}
+	
+	public Book getBookById(String bookId) {
+		Book bookById = null;
+		for(int i=0; i<listOfBooks.size(); i++) {
+			Book book = listOfBooks.get(i);
+			if(book != null && book.getBookId() != null && book.getBookId().equals(bookId)) {
+				bookById = book;
+				break;
+			}
+		}
+		return bookById;
 	}
 	
 	

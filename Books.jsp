@@ -29,7 +29,8 @@
 			<div class="col-md-10">
 			<h3>[<%=book.getCategory()%>] <%=book.getBname() %></h3>
 			<p><%=book.getDescription() %></p>
-			<p><%=book.getAuthor() %>  |  <%=book.getPublisher() %>  |  <%=book.getUnitPrice() %></p>
+			<p><%=book.getAuthor() %>  |  <%=book.getPublisher() %>  |  <%=book.getUnitPrice() %>원</p>
+			<p><a href="book.jsp?id=<%=book.getBookId() %>" class="btn btn-secondary" role="button">상세 정보</a></p>
 			<hr>
 			</div>
 			
