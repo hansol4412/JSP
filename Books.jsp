@@ -2,22 +2,23 @@
 <%@page contentType="text/html; charset=utf-8" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="dto.Book" %>
-<jsp:useBean id="bookDAO" class="dao.BookRepository" scope="session" />
+<%@page import="dao.BookRepository" %>
 <html>
 <head>
 <link rel="stylesheet" 
 	  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<title>상품목록</title>
+<title>도서목록</title>
 </head>
 <body>
 	<jsp:include page="menu.jsp"/>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">상품목록</h1>
+			<h1 class="display-3">도서목록</h1>
 		</div>
 	</div>
 	<%
-		ArrayList<Book> listOfBooks = bookDAO.getAllBooks();
+		BookRepository dao = BookRepository.getInstance();
+		ArrayList<Book> listOfBooks = dao.getAllBooks();
 	%>
 	<div class="container">
 		<div class="row" align="left">

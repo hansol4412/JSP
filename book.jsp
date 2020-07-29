@@ -1,24 +1,26 @@
 <%@page language="java" %>
 <%@page contentType="text/html; charset=utf-8" %>
 <%@page import="dto.Book" %>
+<%@page import="dao.BookRepository" %>
 <jsp:useBean id="bookDAO" class="dao.BookRepository" scope="session" />
 <html>
 <head>
 <link rel="stylesheet" 
 	  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<title>상품 상세 정보</title>
+<title>도서 상세 정보</title>
 </head>
 <body>
 	<jsp:include page="menu.jsp"/>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">상품정보</h1>
+			<h1 class="display-3">도서정보</h1>
 		</div>
 	</div>
 	
 	<%
 		String id= request.getParameter("id");
-		Book book = bookDAO.getBookById(id);
+		BookRepository dao = BookRepository.getInstance();
+		Book book = dao.getBookById(id);
 	%>
 	
 	<div class="container">
@@ -34,7 +36,7 @@
 			<p>출판일 : <%=book.getReleaseDate() %></p>
 			<h4> <%=book.getUnitPrice() %>원</h4>
 			<p><a href="#" class="btn btn-secondary">상품 주문 &raquo;</a>
-			<a href=".books.jsp" class="btn btn-secondary">상품목록 &raquo;</a></p>
+			<a href="books.jsp" class="btn btn-secondary">상품목록 &raquo;</a></p>
 			</div>
 		</div>
 	</div>

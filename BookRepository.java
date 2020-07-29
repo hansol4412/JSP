@@ -7,7 +7,12 @@ public class BookRepository {
 	}
 	
 	private ArrayList<Book> listOfBooks = new ArrayList<Book>();
-
+	private static BookRepository instance = new BookRepository();
+	
+	public static BookRepository getInstance() {
+		return instance;
+	}
+	
 	public BookRepository() {
 		Book html = new Book("B1234", "HTML5+CSS3", 15000);
 		html.setCategory("Hello Coding");
@@ -46,6 +51,10 @@ public class BookRepository {
 		listOfBooks.add(spring);
 	}
 	
+	public void addBook(Book book) {
+		listOfBooks.add(book);
+	}
+	
 	public Book getBookById(String bookId) {
 		Book bookById = null;
 		for(int i=0; i<listOfBooks.size(); i++) {
@@ -57,6 +66,8 @@ public class BookRepository {
 		}
 		return bookById;
 	}
+	
+	
 	
 	
 }
