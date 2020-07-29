@@ -5,8 +5,7 @@
 <jsp:useBean id="bookDAO" class="dao.BookRepository" scope="session" />
 <html>
 <head>
-<link rel="stylesheet" 
-	  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css"/>
 <title>도서 상세 정보</title>
 </head>
 <body>
@@ -25,6 +24,9 @@
 	
 	<div class="container">
 		<div class="row">
+			<div class="col-md-5">
+			<img src="c:/upload/<%=book.getFilename() %>" style="width: 70%">
+			</div>
 			<div class="col-md-6">
 			<h3>[<%=book.getCategory()%>] <%=book.getBname() %></h3>
 			<p><%=book.getDescription() %></p>

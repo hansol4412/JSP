@@ -23,6 +23,7 @@ public class BookRepository {
 		html.setUnitsInstock(1000);
 		html.setReleaseDate("2013-03");
 		html.setTotalPages(283);
+		html.setFilename("B1234.jpg");
 		
 		
 		Book java = new Book("B1235", "쉽게 배우는 자바 프로그래밍", 27000);
@@ -34,6 +35,7 @@ public class BookRepository {
 		java.setUnitsInstock(500);
 		java.setReleaseDate("2015-09");
 		java.setTotalPages(368);
+		java.setFilename("B1235.jpg");
 		
 		Book spring = new Book("B1236", "스프링4 입문", 27000);
 		spring.setCategory("IT 모바일");
@@ -44,6 +46,7 @@ public class BookRepository {
 		spring.setUnitsInstock(1000);
 		spring.setReleaseDate("2018-11");
 		spring.setTotalPages(698);
+		spring.setFilename("B1236.jpg");
 		
 		
 		listOfBooks.add(html);

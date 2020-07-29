@@ -15,6 +15,7 @@ public class Book implements java.io.Serializable{
 	private long totalPages;		//페이지 수
 	private String releaseDate;		//출판일
 	private String condition;		//신규 도서 or 중고 도서 or E-book
+	private String filename;
 	
 	public Book() {
 		super();
@@ -114,9 +115,14 @@ public class Book implements java.io.Serializable{
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
-	
-	
-	
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 	
 
 }

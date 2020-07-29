@@ -5,8 +5,7 @@
 <%@page import="dao.BookRepository" %>
 <html>
 <head>
-<link rel="stylesheet" 
-	  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css"/>
 <title>도서목록</title>
 </head>
 <body>
@@ -27,8 +26,13 @@
 				Book book = listOfBooks.get(i);
 			
 		%>
-			<div class="col-md-10">
+		
+			<div class="col-md-3">
+			<img src="c:/upload/<%=book.getFilename() %>" style="width: 60%">
+			</div>
+			<div class="col-md-8 ">
 			<h3>[<%=book.getCategory()%>] <%=book.getBname() %></h3>
+			<br>
 			<p><%=book.getDescription() %></p>
 			<p><%=book.getAuthor() %>  |  <%=book.getPublisher() %>  |  <%=book.getUnitPrice() %>원</p>
 			<p><a href="book.jsp?id=<%=book.getBookId() %>" class="btn btn-secondary" role="button">상세 정보</a></p>
