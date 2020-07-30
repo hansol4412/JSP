@@ -5,6 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css"/>
+<script type="text/javascript" src="./resources/js/validation.js"></script>
 <title>도서 등록</title>
 </head>
 <body>
@@ -20,21 +21,21 @@
 		<div class="form-group row">
 			<label class="col-sm-2">도서 코드</label>
 			<div class="col-sm-3">
-				<input type="text" name="bookId" class="form-control">
+				<input type="text"  id="bookId" name="bookId" class="form-control">
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<label class="col-sm-2">도서명</label>
 			<div class="col-sm-3">
-				<input type="text" name="name" class="form-control">
+				<input type="text" id="name" name="name" class="form-control">
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<label class="col-sm-2">가격</label>
 			<div class="col-sm-3">
-				<input type="text" name="unitPrice" class="form-control">
+				<input type="text" name="unitPrice" id="unitPrice" class="form-control">
 			</div>
 		</div>
 		
@@ -62,7 +63,7 @@
 		<div class="form-group row">
 			<label class="col-sm-2"> 페이지 수 </label>
 			<div class="col-sm-3">
-				<input type="text" name="totalPages" class="form-control">
+				<input type="text"  name="totalPages" id="totalPages" class="form-control">
 			</div>
 		</div>
 		
@@ -84,7 +85,7 @@
 		<div class="form-group row">
 			<label class="col-sm-2">재고수</label>
 			<div class="col-sm-3">
-				<input type="text" name="unitsInstock" class="form-control">
+				<input type="text"  name="unitsInstock" id="unitsInstock" class="form-control">
 			</div>
 		</div>
 		
@@ -106,7 +107,7 @@
 		
 		<div class="form-group row">
 			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-primary" value="등록">
+				<input type="button" class="btn btn-primary" value="등록" onclick="CheckAddBook()">
 			</div>
 		</div>
 	</form>
