@@ -15,7 +15,8 @@ public class Book implements java.io.Serializable{
 	private long totalPages;		//페이지 수
 	private String releaseDate;		//출판일
 	private String condition;		//신규 도서 or 중고 도서 or E-book
-	private String filename;
+	private String filename;		//이미지 파일명
+	private Integer quantity;		//장바구니에 담은 갯수
 	
 	public Book() {
 		super();
@@ -123,6 +124,15 @@ public class Book implements java.io.Serializable{
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+	
 	
 
 }
