@@ -3,7 +3,7 @@
 <%@page import="dto.Book" %>
 <%@page import="dao.BookRepository" %>
 <%@page errorPage="exceptionNoBookId.jsp" %>
-<jsp:useBean id="bookDAO" class="dao.BookRepository" scope="session" />
+<%@page import="java.sql.*"%>
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css"/>
@@ -26,28 +26,33 @@
 		</div>
 	</div>
 	
-	<%
-		String id= request.getParameter("id");
-		BookRepository dao = BookRepository.getInstance();
-		Book book = dao.getBookById(id);
-	%>
-	
+	<%@ include file="dbconn.jsp" %>
+		<%	
+			String bookId= request.getParameter("id");
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "select * from book where b_id =? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bookId);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+		%>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5">
-			<img src="c:/upload/<%=book.getFilename() %>" style="width: 70%">
+			<img src="c:/upload/<%=rs.getString("b_fileName")%>" style="width: 70%">
 			</div>
 			<div class="col-md-6">
-			<h3>[<%=book.getCategory()%>] <%=book.getBname() %></h3>
-			<p><%=book.getDescription() %></p>
-			<p>도서코드 : <b><span class="badge badge-danger"><%=book.getBookId() %></span></b></p>
-			<p>출판사 : <%=book.getPublisher() %></p>
-			<p>저자 : <%=book.getAuthor() %></p>
-			<p>재고수 : <%=book.getUnitsInstock() %></p>
-			<p>총 페이지 수  : <%=book.getTotalPages() %></p>
-			<p>출판일 : <%=book.getReleaseDate() %></p>
-			<h4> <%=book.getUnitPrice() %>원</h4>
-			<p><form name="addForm" action="./addCart.jsp?id=<%=book.getBookId()%>" method="post">
+			<h3>[<%=rs.getString("b_category")%>] <%=rs.getString("b_name")%></h3>
+			<p><%=rs.getString("b_description")%></p>
+			<p>도서코드 : <b><span class="badge badge-danger"><%=rs.getString("b_id")%></span></b></p>
+			<p>출판사 : <%=rs.getString("b_publisher")%></p>
+			<p>저자 : <%=rs.getString("b_author")%></p>
+			<p>재고수 : <%=rs.getLong("b_unitsInStock")%></p>
+			<p>총 페이지 수  : <%=rs.getLong("b_totalPages")%></p>
+			<p>출판일 : <%=rs.getString("b_releaseDate")%></p>
+			<h4> <%=rs.getInt("b_unitPrice")%>원</h4>
+			<p><form name="addForm" action="./addCart.jsp?id=<%=rs.getString("b_id")%>" method="post">
 			<a href="#" class="btn btn-info">상품 주문 &raquo;</a>
 			<a href="./cart.jsp" class="btn btn-warning" onclick="addToCart()" >장바구니 &raquo;</a>
 			<a href="books.jsp" class="btn btn-secondary">상품목록 &raquo;</a>
@@ -55,5 +60,11 @@
 			</div>
 		</div>
 	</div>
+	<% 
+			}
+			if(rs != null) rs.close();
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		%>
 </body>
 </html>

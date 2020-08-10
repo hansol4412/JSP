@@ -5,6 +5,14 @@
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css"/>
 <title>상품 편집</title>
+<script type="text/javascript">
+	function deleteConfirm(id){
+		if(confirm("해당 책을 삭제합니다!!")==true){
+			location.href = "./deleteBook.jsp?id=" + id;
+		}
+		else return;
+	}
+</script>
 <%
 	String edit = request.getParameter("edit");
 %>
@@ -41,7 +49,11 @@
 			<p><%
 				if(edit.equals("update")){
 				%>
-				<a href="./updateBook.jsp?id=<%=rs.getString("b_id") %>" class="btn-btn-success" role="button">수정 &raquo;</a></p>
+				<a href="./updateBook.jsp?id=<%=rs.getString("b_id") %>" class="btn btn-success" role="button">수정 &raquo;</a></p>
+			<p><%
+				} else if(edit.equals("delete")){
+				%>
+				<a href="#" class="btn btn-danger" role="button" onclick="deleteConfirm('<%=rs.getString("b_id")%>')">삭제 &raquo;</a></p>
 			<%} %>
 			<hr>
 			</div>
