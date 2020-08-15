@@ -102,4 +102,66 @@ public class BoardDAO {
  		return null;
  	}
  	
+ 	public String getLoginNameById(String id) {
+ 		Connection conn= null;
+ 		PreparedStatement pstmt= null;
+ 		ResultSet rs = null;
+ 		String name =null;
+ 		String sql = "select * from member where id=?";
+ 		
+ 		try {
+ 			conn = DBConnection.getConnection();
+ 			pstmt = conn.prepareStatement(sql);
+ 			pstmt.setString(1, id);
+ 			rs = pstmt.executeQuery();
+ 			
+ 			if(rs.next()) name= rs.getString("name");
+ 			
+ 			return name;
+ 			}catch(Exception ex) {
+ 			System.out.println("getListCount() 에러:"+ ex.getMessage());
+ 		}
+ 		finally {
+ 			try {
+ 				if(rs != null) rs.close();
+ 				if(pstmt != null) pstmt.close();
+ 				if(conn != null) conn.close();
+ 			}catch(Exception ex) {
+ 	 			System.out.println("getListCount() 에러:"+ ex.getMessage());
+ 	 		}
+ 		}
+ 		return null;
+ 	}
+ 	
+ 	public void insertBoard(BoardDTO board) {
+ 		Connection conn= null;
+ 		PreparedStatement pstmt= null;
+ 	
+ 		try {
+ 			conn = DBConnection.getConnection();
+ 			String sql = "insert into board values(?,?,?,?,?,?,?,?)";
+ 			pstmt = conn.prepareStatement(sql);
+ 			pstmt.setInt(1, board.getNum());
+ 			pstmt.setString(2, board.getId());
+ 			pstmt.setString(3, board.getName());
+ 			pstmt.setString(4, board.getSubject());
+ 			pstmt.setString(5, board.getContent());
+ 			pstmt.setString(6, board.getRegist_day());
+ 			pstmt.setInt(7, board.getHit());
+ 			pstmt.setString(8, board.getIp());
+ 			
+ 			pstmt.executeQuery();
+ 			}catch(Exception ex) {
+ 			System.out.println("getListCount() 에러:"+ ex.getMessage());
+ 		}
+ 		finally {
+ 			try {
+ 				if(pstmt != null) pstmt.close();
+ 				if(conn != null) conn.close();
+ 			}catch(Exception ex) {
+ 	 			System.out.println("getListCount() 에러:"+ ex.getMessage());
+ 	 		}
+ 		}
+ 	}
+ 	
 }
