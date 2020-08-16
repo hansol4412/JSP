@@ -164,4 +164,81 @@ public class BoardDAO {
  		}
  	}
  	
+ 	public void updateHit(int num) {
+ 		Connection conn= null;
+ 		PreparedStatement pstmt= null;
+ 		ResultSet rs = null;
+ 		
+ 		try {
+	 			conn = DBConnection.getConnection();
+	 			String sql = "select hit from board where num = ?";
+	 			pstmt = conn.prepareStatement(sql);
+	 			pstmt.setInt(1,num);
+	 			rs = pstmt.executeQuery();
+	 			int hit =0;
+	 			if(rs.next()) hit = rs.getInt("hit") +1 ;
+	 			
+	 			sql = "update board set hit=? where num=?";
+	 			pstmt = conn.prepareStatement(sql);
+	 			pstmt.setInt(1,hit);
+	 			pstmt.setInt(2,num);
+	 			pstmt.executeUpdate();
+ 			}catch(Exception ex) {
+ 			System.out.println("getListCount() 에러:"+ ex.getMessage());
+ 			
+ 		}
+ 		finally {
+ 			try {
+ 				if(rs != null) rs.close();
+ 				if(pstmt != null) pstmt.close();
+ 				if(conn != null) conn.close();
+ 			}catch(Exception ex) {
+ 	 			System.out.println("getListCount() 에러:"+ ex.getMessage());
+ 	 		}
+ 		}
+ 	}
+ 	
+ 	public BoardDTO getBoardByNum(int num, int page) {
+ 		Connection conn= null;
+ 		PreparedStatement pstmt= null;
+ 		ResultSet rs = null;
+ 		BoardDTO board = null;
+ 		
+ 		updateHit(num);
+ 		String sql = "select * from board where num = ?";
+ 		
+ 		try {
+	 			conn = DBConnection.getConnection();
+	 			pstmt = conn.prepareStatement(sql);
+	 			pstmt.setInt(1,num);
+	 			rs = pstmt.executeQuery();
+	 			
+	 			if(rs.next()) {
+	 				board = new BoardDTO();
+	 				board.setNum(rs.getInt("num"));
+	 				board.setId(rs.getString("id"));
+	 				board.setName(rs.getString("name"));
+	 				board.setSubject(rs.getString("subject"));
+	 				board.setContent(rs.getString("content"));
+	 				board.setRegist_day(rs.getString("regist_day"));
+	 				board.setHit(rs.getInt("hit"));
+	 				board.setIp(rs.getString("ip"));
+	 			}
+	 			return board;
+ 			}catch(Exception ex) {
+ 			System.out.println("getListCount() 에러:"+ ex.getMessage());
+ 			
+ 		}
+ 		finally {
+ 			try {
+ 				if(rs != null) rs.close();
+ 				if(pstmt != null) pstmt.close();
+ 				if(conn != null) conn.close();
+ 			}catch(Exception ex) {
+ 	 			System.out.println("getListCount() 에러:"+ ex.getMessage());
+ 	 		}
+ 		}
+ 		return null;
+ 	}
+ 	
 }

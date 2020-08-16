@@ -40,6 +40,13 @@ public class BoardController extends HttpServlet{
 			requestBoardWrite(request);
 			RequestDispatcher rd = request.getRequestDispatcher("./BoardListAction.do");
 			rd.forward(request, response);
+		}else if(command.equals("./BoardViewAction.do")) {
+			requestBoardView(request);
+			RequestDispatcher rd = request.getRequestDispatcher("./BoardView.do");
+			rd.forward(request, response);
+		}else if(command.equals("./BoardView.do")) {
+			RequestDispatcher rd = request.getRequestDispatcher("./view.jsp");
+			rd.forward(request, response);
 		}
 	}
 	
@@ -83,7 +90,7 @@ public class BoardController extends HttpServlet{
 		request.setAttribute("name", name);
 	}
 	
-	public void requestBoardWrite(HttpServletRequest request) {
+	public void requestBoardView(HttpServletRequest request) {
 		BoardDAO dao = BoardDAO.getInstance();
 		BoardDTO board = new BoardDTO();
 		board.setId(request.getParameter("id"));
@@ -103,6 +110,18 @@ public class BoardController extends HttpServlet{
 		board.setIp(request.getRemoteAddr());
 		
 		dao.insertBoard(board);
+	}
+	public void requestBoardWrite(HttpServletRequest request) {
+		BoardDAO dao = BoardDAO.getInstance();
+		int num = Integer.parseInt(request.getParameter("num"));
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		
+		BoardDTO board = new BoardDTO();
+		board = dao.getBoardByNum(num, pageNum);
+		
+		request.setAttribute("num", num);
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("board", board);
 	}
 	
 }
