@@ -241,4 +241,62 @@ public class BoardDAO {
  		return null;
  	}
  	
+ 	public void updateBoard(BoardDTO board) {
+ 		Connection conn= null;
+ 		PreparedStatement pstmt= null;
+ 	
+ 		try {
+ 			conn = DBConnection.getConnection();
+ 			String sql = "update board set name=?, subject=?, content=? where num=?";
+ 			pstmt = conn.prepareStatement(sql);
+ 			
+ 			conn.setAutoCommit(false);
+ 			
+ 			pstmt.setString(1, board.getName());
+ 			pstmt.setString(2, board.getSubject());
+ 			pstmt.setString(3, board.getContent());
+ 			pstmt.setInt(4, board.getNum());
+ 			
+ 			pstmt.executeQuery();
+ 			conn.commit();
+ 			
+ 			}catch(Exception ex) {
+ 			System.out.println("getListCount() 에러:"+ ex.getMessage());
+ 		}
+ 		finally {
+ 			try {
+ 				if(pstmt != null) pstmt.close();
+ 				if(conn != null) conn.close();
+ 			}catch(Exception ex) {
+ 	 			System.out.println("getListCount() 에러:"+ ex.getMessage());
+ 	 		}
+ 		}
+ 	}
+
+ 	
+ 	public void deleteBoard(int num) {
+ 		Connection conn= null;
+ 		PreparedStatement pstmt= null;
+ 	
+ 		try {
+ 			conn = DBConnection.getConnection();
+ 			String sql = "delete from board where num=?";
+ 			pstmt = conn.prepareStatement(sql);
+ 			
+ 			pstmt.setInt(1, num);
+ 			
+ 			pstmt.executeQuery();
+ 			
+ 			}catch(Exception ex) {
+ 			System.out.println("getListCount() 에러:"+ ex.getMessage());
+ 		}
+ 		finally {
+ 			try {
+ 				if(pstmt != null) pstmt.close();
+ 				if(conn != null) conn.close();
+ 			}catch(Exception ex) {
+ 	 			System.out.println("getListCount() 에러:"+ ex.getMessage());
+ 	 		}
+ 		}
+ 	}
 }
